@@ -1,0 +1,9 @@
+<nav class="navbar">
+    <div class="welcome">Welcome, {{ username }}</div>
+    <div class="nav-links">
+      <a routerLink="/profile" routerLinkActive="active">My Profile</a>
+      <a routerLink="/drives" routerLinkActive="active">View Drives</a>
+      <a (click)="logout()" style="cursor:pointer;">Logout</a>
+    </div>
+  </nav>
+  

@@ -1,0 +1,11 @@
+<app-student-navbar [username]="username"></app-student-navbar>
+<div class="drives-container">
+  <h2>Available Drives</h2>
+  <div *ngFor="let drive of drives" class="drive-card">
+    <h3>{{ drive.companyName }}</h3>
+    <div>Date: {{ drive.dateOfDrive | date }}</div>
+    <div>Location: {{ drive.location }}</div>
+    <div>{{ drive.jd }}</div>
+    <button (click)="applyToDrive(drive.id)">Apply</button>
+  </div>
+</div>

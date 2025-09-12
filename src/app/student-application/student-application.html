@@ -1,0 +1,17 @@
+<div class="applications-container">
+    <h2>Your Applications</h2>
+    <table *ngIf="applications.length > 0" class="app-table">
+      <tr>
+        <th>Company</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+      <tr *ngFor="let app of applications">
+        <td>{{ app.drive?.companyName }}</td>
+        <td>{{ app.drive?.dateOfDrive | date:'mediumDate' }}</td>
+        <td>{{ app.status }}</td>
+      </tr>
+    </table>
+    <div *ngIf="applications.length === 0" class="no-apps">No applications yet.</div>
+  </div>
+  

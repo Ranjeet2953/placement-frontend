@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [CommonModule, RouterOutlet,RouterModule]
 })
-export class App {
-  protected readonly title = signal('placement-frontend');
+export class AppComponent {
+  constructor(private router: Router) {}
+
+  isLandingPage() {
+    return this.router.url === '/' || this.router.url === '/register';
+  }
 }

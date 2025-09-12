@@ -1,0 +1,12 @@
+<form (ngSubmit)="register()">
+    <input [(ngModel)]="username" name="username" placeholder="Username" required>
+    <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+    <select [(ngModel)]="role" name="role">
+      <option value="STUDENT">Student</option>
+      <option value="ADMIN">Admin</option>
+    </select>
+    <button type="submit">Register</button>
+  </form>
+  <p *ngIf="error">{{ error }}</p>
+  <p *ngIf="success">{{ success }}</p>
+  
