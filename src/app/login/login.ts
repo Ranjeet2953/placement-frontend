@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
+  styleUrls: ['./login.css'],
   standalone: true,
   imports: [CommonModule, FormsModule]
 })
@@ -24,7 +25,7 @@ export class Login {
         this.api.getMe().subscribe({
           next: (user: any) => {
             if (user && user.roles && user.roles.includes('ADMIN')) {
-              this.router.navigate(['/applications']);
+              this.router.navigate(['/admin']);
             } else if (user && user.roles && user.roles.includes('STUDENT')) {
               this.router.navigate(['/dashboard']); // or '/drives'
             }

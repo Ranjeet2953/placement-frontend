@@ -1,127 +1,77 @@
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: #e6ebfa;
-  }
-  .login-outer {
-    display: flex;
-    min-height: 100vh;
-  }
-  .login-left {
-    flex: 1;
-    background: linear-gradient(135deg,#6339fa 0%, #4584ea 100%);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  .login-left h1 {
-    font-size: 2.7rem;
-    margin-bottom: 18px;
-  }
-  .login-left p {
-    font-size: 1.3rem;
-    font-weight: 400;
-  }
-  .login-bg {
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.08);
-    z-index: 0;
-    filter: blur(16px);
-  }
-  .login-right {
-    flex: 1;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .login-form {
-    width: 310px;
-    padding: 35px 24px 24px 24px;
-    background: #fafafd;
-    border-radius: 18px;
-    box-shadow: 0 6px 32px 0 rgba(63,82,181,0.12);
-    display: flex;
-    flex-direction: column;
-  }
-  .login-greeting .greet {
-    font-size: 1.1rem;
-    color: #884ab0;
-  }
-  .login-head {
-    font-size: 1.3rem;
-    color: #484c56;
-    margin-bottom: 7px;
-  }
-  .form-group {
-    margin: 22px 0 16px 0;
-    display: flex;
-    flex-direction: column;
-  }
-  input[type="text"],
-  input[type="password"] {
-    background: linear-gradient(90deg,#5e3efe10,#9572e850);
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 1rem;
-    margin-bottom: 6px;
-    color: #3a3263;
-    outline: none;
-    box-shadow: 0 3px 16px 0 rgba(99,57,250,0.07) inset;
-  }
-  input[type="text"]:focus,
-  input[type="password"]:focus {
-    box-shadow: 0 3px 10px #7b50f7a8;
-  }
-  .row-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-    font-size: 0.95rem;
-  }
-  .forgot-link {
-    color: #8e40c0;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .login-btn {
-    background: linear-gradient(135deg,#6946f8 0%, #6fc2f5 100%);
-    color: #fff;
-    font-weight: 600;
-    padding: 12px 0;
-    font-size: 1.08rem;
-    border: none;
-    border-radius: 13px;
-    margin: 7px 0 11px 0;
-    box-shadow: 0 2px 10px 0 rgba(107,72,255,0.17);
-    cursor: pointer;
-    transition: background 0.21s;
-  }
-  .login-btn:hover {
-    background: linear-gradient(120deg,#5832e6 0%, #4f9fe5 100%);
-  }
-  .register-link {
-    font-size: 0.98rem;
-    text-align: center;
-    color: #6d46c7;
-    margin-top: 7px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  .error-msg {
-    color: #e23c61;
-    font-size: 0.98rem;
-    text-align: center;
-    margin-top: 5px;
-  }
-  
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 10px 10px 9px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,.16);
+  color: #0b0b0b;
+  font-size: 1.1rem;
+  font-weight: 500;
+  outline: none;
+  box-shadow: 0 2px 12px #be63d744;
+  transition: background 0.17s;
+}
+
+.input-group input:focus {
+  background: rgba(255,255,255,.23);
+}
+
+.input-group .icon {
+  position: absolute;
+  right: 18px; top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.row-between {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 0 0 4px 0; color: #0b0a0b; font-size: 1rem;
+}
+.remember input { accent-color: #b077fa;margin-right: 5px;}
+
+.forgot {
+  color: #121010;
+  font-size: .94rem; text-decoration: underline;
+  opacity: 0.82; font-weight: 400;
+}
+
+.main-btn {
+  width: 100%;
+  background: linear-gradient(90deg,#bd69cc 0%,#7a27e8 100%);
+  border: none;
+  border-radius: 40px;
+  padding: 12px 0;
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0.7rem 0 0 0;
+  box-shadow: 0 2px 26px #ba3d92a0;
+  cursor: pointer;
+  transition: background .22s, box-shadow .2s;
+}
+
+.main-btn:hover {
+  background: linear-gradient(90deg,#7a27e8 0%, #bd69cc 100%);
+  box-shadow: 0 5px 36px #7533bd73;
+}
+
+.error-msg {
+  color: #fed9e1;
+  font-size: 0.99rem;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 7px;
+}

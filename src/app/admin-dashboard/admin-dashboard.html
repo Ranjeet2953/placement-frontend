@@ -1,0 +1,76 @@
+<mat-sidenav-container class="dashboard-container">
+  <mat-sidenav
+    mode="side"
+    [opened]="sidebarOpen"
+    class="sidenav"
+    [class.sidenav-closed]="!sidebarOpen">
+    <div class="sidenav-header">
+      <mat-icon class="admin-icon">account_circle</mat-icon>
+      <span *ngIf="sidebarOpen" class="logo">Placement Admin</span>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
+        <mat-icon matListIcon>dashboard</mat-icon>
+        <span *ngIf="sidebarOpen">Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/admin/applications" routerLinkActive="active">
+        <mat-icon matListIcon>assignment</mat-icon>
+        <span *ngIf="sidebarOpen">Applications</span>
+      </a>
+      <a mat-list-item routerLink="/admin/drives" routerLinkActive="active">
+        <mat-icon matListIcon>business_center</mat-icon>
+        <span *ngIf="sidebarOpen">Drives</span>
+      </a>
+      <a mat-list-item routerLink="/admin/users" routerLinkActive="active">
+        <mat-icon matListIcon>group</mat-icon>
+        <span *ngIf="sidebarOpen">Users</span>
+      </a>
+      <a mat-list-item (click)="logout()" style="cursor:pointer">
+        <mat-icon matListIcon>logout</mat-icon>
+        <span *ngIf="sidebarOpen">Logout</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="topbar">
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon aria-label="Toggle sidebar">{{ sidebarOpen ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+      <span class="toolbar-title">Admin Dashboard</span>
+      <span class="spacer"></span>
+      <admin-profile [username]="adminUsername"></admin-profile>
+    </mat-toolbar>
+
+    <div class="dashboard-content">
+      <div class="cards-row">
+        <mat-card class="dashboard-card">
+          <mat-card-title>Total Drives</mat-card-title>
+          <mat-card-content>
+            <h3>{{ totalDrives }}</h3>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="dashboard-card">
+          <mat-card-title>Total Applications</mat-card-title>
+          <mat-card-content>
+            <h3>{{ totalApplications }}</h3>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="dashboard-card">
+          <mat-card-title>Total Users</mat-card-title>
+          <mat-card-content>
+            <h3>{{ totalUsers }}</h3>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-card class="info-card">
+        <mat-card-title>Analytics & Reports</mat-card-title>
+        <mat-card-content>
+          <p>Add charts, graphs, and detailed reports here to visualize your data.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

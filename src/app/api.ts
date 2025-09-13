@@ -36,4 +36,38 @@ export class Api {
   getStudentApplications() {
     return this.http.get<any[]>(this.baseUrl + '/student/applications', { withCredentials: true });
   }
+  getApplications() {
+    return this.http.get<any[]>(this.baseUrl + '/admin/applications', { withCredentials: true });
+  }
+
+  getUsers() {
+    return this.http.get<any[]>(this.baseUrl + '/admin/users', { withCredentials: true });
+  }
+
+  // Newly added for admin drive & application management
+
+  createDrive(data: any) {
+    return this.http.post(this.baseUrl + '/drives', data, { withCredentials: true });
+  }
+
+  getApplicationsForDrive(driveId: number) {
+    return this.http.get<any[]>(this.baseUrl + `/admin/drives/${driveId}/applications`, { withCredentials: true });
+  }
+
+  updateApplicationStatus(applicationId: number, status: string) {
+    return this.http.put(this.baseUrl + `/admin/applications/${applicationId}/status`, { status }, { withCredentials: true });
+  }
+
+  // Get current admin profile details
+getAdminProfile() {
+  return this.http.get(this.baseUrl + '/admin/profile', { withCredentials: true });
 }
+
+// Update admin profile details
+updateAdminProfile(data: any) {
+  return this.http.put(this.baseUrl + '/admin/profile', data, { withCredentials: true });
+}
+ 
+
+}
+
