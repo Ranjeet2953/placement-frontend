@@ -60,3 +60,9 @@ mat-table {
   display: block;
   overflow: auto;
 }
+/* Existing styles omitted for brevity */
+
+/* Optional: add some padding for the action buttons */
+mat-cell button {
+  margin-left: 8px;
+}

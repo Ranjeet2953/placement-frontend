@@ -1,77 +1,106 @@
 .login-form {
   width: 100%;
+  max-width: 360px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #333;
 }
 
 .input-group {
   position: relative;
   width: 100%;
-  margin-bottom: 10px;
 }
 
 .input-group input {
-  width: 100%;
-  padding: 10px 10px 10px 9px;
-  border-radius: 12px;
-  border: none;
-  background: rgba(255,255,255,.16);
-  color: #0b0b0b;
-  font-size: 1.1rem;
+  width: 90%;
+  padding: 12px 42px 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  color: #222;
+  font-size: 1rem;
   font-weight: 500;
   outline: none;
-  box-shadow: 0 2px 12px #be63d744;
-  transition: background 0.17s;
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
 .input-group input:focus {
-  background: rgba(255,255,255,.23);
+  border: 1px solid #7a27e8;
+  box-shadow: 0 0 6px rgba(122,39,232,0.25);
+  background: #fff;
 }
 
 .input-group .icon {
   position: absolute;
-  right: 18px; top: 50%;
+  right: 14px;
+  top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
 }
 
 .row-between {
-  display: flex; justify-content: space-between; align-items: center;
-  margin: 0 0 4px 0; color: #0b0a0b; font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #444;
 }
-.remember input { accent-color: #b077fa;margin-right: 5px;}
+
+.remember input {
+  accent-color: #7a27e8;
+  margin-right: 6px;
+}
 
 .forgot {
-  color: #121010;
-  font-size: .94rem; text-decoration: underline;
-  opacity: 0.82; font-weight: 400;
+  color: #7a27e8;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+  color: #5a1cc1;
 }
 
 .main-btn {
   width: 100%;
-  background: linear-gradient(90deg,#bd69cc 0%,#7a27e8 100%);
+  background: linear-gradient(90deg, #7a27e8 0%, #bd69cc 100%);
   border: none;
-  border-radius: 40px;
+  border-radius: 30px;
   padding: 12px 0;
-  font-size: 1.22rem;
-  font-weight: 800;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #fff;
-  margin: 0.7rem 0 0 0;
-  box-shadow: 0 2px 26px #ba3d92a0;
+  margin-top: 0.7rem;
+  box-shadow: 0 4px 14px rgba(186, 61, 146, 0.4);
   cursor: pointer;
-  transition: background .22s, box-shadow .2s;
+  transition: background 0.25s, transform 0.2s;
 }
 
 .main-btn:hover {
-  background: linear-gradient(90deg,#7a27e8 0%, #bd69cc 100%);
-  box-shadow: 0 5px 36px #7533bd73;
+  background: linear-gradient(90deg, #bd69cc 0%, #7a27e8 100%);
+  transform: translateY(-2px);
 }
 
 .error-msg {
-  color: #fed9e1;
-  font-size: 0.99rem;
+  color: #e63946;
+  font-size: 0.9rem;
   text-align: center;
-  font-weight: bold;
-  margin-top: 7px;
+  font-weight: 500;
+  margin-top: 6px;
 }

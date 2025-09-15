@@ -31,46 +31,108 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="topbar">
-      <button mat-icon-button (click)="toggleSidebar()">
+    <mat-toolbar class="topbar">
+      <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()">
         <mat-icon aria-label="Toggle sidebar">{{ sidebarOpen ? 'menu_open' : 'menu' }}</mat-icon>
       </button>
       <span class="toolbar-title">Admin Dashboard</span>
       <span class="spacer"></span>
-      <admin-profile [username]="adminUsername"></admin-profile>
+      <div class="admin-profile-badge">
+        <mat-icon style="font-size:22px;">person</mat-icon>
+        <span>admin</span>
+      </div>
     </mat-toolbar>
 
-    <div class="dashboard-content">
-      <div class="cards-row">
-        <mat-card class="dashboard-card">
-          <mat-card-title>Total Drives</mat-card-title>
-          <mat-card-content>
-            <h3>{{ totalDrives }}</h3>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="dashboard-card">
-          <mat-card-title>Total Applications</mat-card-title>
-          <mat-card-content>
-            <h3>{{ totalApplications }}</h3>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="dashboard-card">
-          <mat-card-title>Total Users</mat-card-title>
-          <mat-card-content>
-            <h3>{{ totalUsers }}</h3>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <mat-card class="info-card">
-        <mat-card-title>Analytics & Reports</mat-card-title>
-        <mat-card-content>
-          <p>Add charts, graphs, and detailed reports here to visualize your data.</p>
-        </mat-card-content>
-      </mat-card>
+    <div class="welcome-banner">
+      Welcome back! Here's what's happening with your placements.
     </div>
 
-    <router-outlet></router-outlet>
+    <div class="cards-row">
+      <div class="stat-card glass fade-in">
+        <div class="stat-icon stat-drives"><mat-icon>assignment</mat-icon></div>
+        <div class="stat-value">{{ totalDrives }}</div>
+        <div class="stat-label">Total Drives</div>
+        <div class="stat-status active-dot">Active</div>
+        <div class="stat-update">Updated 2m ago</div>
+      </div>
+      <div class="stat-card glass fade-in">
+        <div class="stat-icon stat-applications"><mat-icon>description</mat-icon></div>
+        <div class="stat-value">{{ totalApplications }}</div>
+        <div class="stat-label">Total Applications</div>
+        <div class="stat-status active-dot">Active</div>
+        <div class="stat-update">Updated 2m ago</div>
+      </div>
+      <div class="stat-card glass fade-in">
+        <div class="stat-icon stat-users"><mat-icon>supervisor_account</mat-icon></div>
+        <div class="stat-value">{{ totalUsers }}</div>
+        <div class="stat-label">Total Users</div>
+        <div class="stat-status active-dot">Active</div>
+        <div class="stat-update">Updated 2m ago</div>
+      </div>
+    </div>
+
+    <div class="main-row">
+      <div class="main-col main-left glass">
+        <div class="main-card-header">
+          <div class="main-card-title">
+            <mat-icon>calendar_today</mat-icon>
+            Upcoming Drives
+          </div>
+          <button class="view-all-link" (click)="goToDrives()">View All</button>
+        </div>
+        <div class="drives-list scrollable-list" tabindex="0">
+          <div *ngFor="let drive of upcomingDrives" class="drive-item">
+            <div class="drive-avatar drive-purple">{{ drive.initials }}</div>
+            <div class="drive-info-row">
+              <div class="drive-title">
+                <b>{{ drive.companyName }}</b> <span class="company-name">({{ drive.companyShort }})</span>
+              </div>
+              <div class="drive-details-row">
+                <mat-icon class="row-icon">calendar_today</mat-icon>
+                <span>{{ drive.dateOfDrive | date:'MMM dd, yyyy' }}</span>
+                <mat-icon class="row-icon">location_on</mat-icon>
+                <span>{{ drive.location }}</span>
+              </div>
+              <div class="drive-description">{{ drive.jd | slice:0:24 }}</div>
+              <div [ngClass]="{'badge-urgent': drive.isUrgent, 'badge-normal': !drive.isUrgent}" class="drive-badge">
+                <mat-icon>timelapse</mat-icon> {{ drive.countdown }}d
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-col main-right glass">
+        <div class="main-card-header">
+          <div class="main-card-title">
+            <mat-icon>insert_chart</mat-icon>
+            Company Distribution
+          </div>
+          <div class="growth-indicator"><mat-icon>trending_up</mat-icon> <span>+12% this month</span></div>
+        </div>
+        <div class="company-bar-charts scrollable-list" tabindex="0" style="position:relative;">
+          <div *ngFor="let c of companyStats" class="company-bar-row">
+            <div class="company-bar-meta">
+              <div class="company-icon"></div>
+              <span>{{ c.companyName }}</span>
+            </div>
+            <div class="company-bar">
+              <span [ngStyle]="{'width': c.appliedPercent + '%'}" class="bar-applied"></span>
+              <span [ngStyle]="{'width': c.notAppliedPercent + '%'}" class="bar-notapplied"></span>
+              <span class="bar-label">{{ (c.appliedCount + c.notAppliedCount) }} total</span>
+            </div>
+            <div class="company-bar-legend">
+              <span class="legend-applied">Applied ({{ c.appliedCount }})</span>
+              <span class="legend-notapplied">Not Applied ({{ c.notAppliedCount }})</span>
+            </div>
+          </div>
+          <div class="company-bar-summary sticky-summary">
+            <div><b>{{ totalApplied }}</b> Total Applied</div>
+            <div><b>{{ totalNotApplied }}</b> Not Applied</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
