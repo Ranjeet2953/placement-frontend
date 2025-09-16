@@ -1,103 +1,159 @@
-:host {
-  display: block;
-  padding: 1.5rem 2rem;
-  background-color: #f5f7fa;
-  min-height: 100vh;
-  font-family: 'Roboto', Arial, sans-serif;
+/* General Page */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafc;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-h2 {
-  color: #2c3e50;
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 1.8rem;
-  letter-spacing: 0.03em;
-}
-
-.add-drive-btn {
-  margin-bottom: 1.5rem;
-  padding: 8px 24px;
-  font-weight: 600;
-  border-radius: 25px;
-  box-shadow: 0 6px 10px rgba(33, 150, 243, 0.25);
-  transition: box-shadow 0.3s ease;
-}
-
-.add-drive-btn:hover {
-  box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
-}
-
-.empty-state {
-  font-style: italic;
-  color: #888c9f;
-  margin-top: 1rem;
-  font-size: 1.1rem;
-}
-
-.drives-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.drive-card {
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.3s ease;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.drive-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(33, 150, 243, 0.3);
-}
-
-.company-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #1a73e8;
-  letter-spacing: 0.01em;
-}
-
-mat-card-content p {
-  color: #34495e;
-  font-size: 1rem;
-  margin: 0.3rem 0;
-}
-
-mat-card-content p strong {
-  color: #2e86c1;
-}
-
-.job-desc {
-  margin-top: 0.6rem;
-  font-style: italic;
-  color: #67748e;
-  font-weight: 500;
-}
+/* Header */
 .header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
 }
 
 .header h2 {
+  flex: 1;
+  text-align: center;
   margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a237e; /* professional deep blue */
 }
 
+/* Add Button */
+.add-btn {
+  margin: 0 0 1rem 1.5rem; /* aligned left under header */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1976d2;
+  color: rgb(25, 106, 172) !important;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-transform: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  :host {
-    padding: 1rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .add-drive-btn {
-    width: 100%;
-  }
+.add-btn:hover {
+  background: #e5e9ed;
+  transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  color: #777;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+/* Grid Layout */
+.drives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  padding: 1.5rem;
+}
+
+/* Adjust edit button in card header */
+mat-card-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-button {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  color: #1565c0;
+}
+
+.edit-button:hover {
+  background-color: rgba(21, 101, 192, 0.1);
+  border-radius: 50%;
+}
+
+/* Filter Section */
+.filter-section {
+  background: #fff5fb;
+  border-radius: 10px;
+  margin: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 9px rgba(184, 40, 144, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.date-range-picker {
+  min-width: 260px;
+}
+
+.quick-filters {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Drive Card */
+.drive-card {
+  border-radius: 10px;
+  background: white;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid #eee;
+}
+
+.drive-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Company Name */
+.company-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1565c0;
+  margin-bottom: 0.5rem;
+}
+
+/* Application Count Badge */
+mat-card-subtitle {
+  display: inline-block;
+  font-size: 0.8rem;
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+/* Card Content */
+mat-card-content p {
+  font-size: 0.9rem;
+  margin: 0.4rem 0;
+  line-height: 1.4;
+}
+
+.job-description {
+  font-size: 0.85rem;
+  color: #555;
+  font-style: italic;
 }

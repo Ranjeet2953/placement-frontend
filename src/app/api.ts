@@ -87,4 +87,16 @@ export class Api {
   getCompanyApplicationStats() {
     return this.http.get<any[]>(this.baseUrl + '/admin/company-application-stats', { withCredentials: true });
   }
+  getApplicationsByCompany(companyName: string) {
+    return this.http.get<any[]>(`${this.baseUrl}/admin/applications/by-company?companyName=${encodeURIComponent(companyName)}`, { withCredentials: true });
+  }
+  getDrive(id: number) {
+    return this.http.get<any>(`${this.baseUrl}/drives/${id}`, { withCredentials: true });
+  }
+  
+  updateDrive(id: number, driveData: any) {
+    return this.http.put<any>(`${this.baseUrl}/drives/${id}`, driveData, { withCredentials: true });
+  }
+  
+  
 }

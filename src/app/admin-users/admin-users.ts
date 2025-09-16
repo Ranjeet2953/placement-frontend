@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Api } from '../api'; // Adjust path as needed
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-users',
@@ -15,7 +16,7 @@ import { Api } from '../api'; // Adjust path as needed
 export class AdminUsers implements OnInit {
   users: any[] = [];
 
-  constructor(private api: Api) {}
+  constructor(private api: Api,private router: Router) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -32,6 +33,11 @@ export class AdminUsers implements OnInit {
     });
   }
 
+  goBack() {
+    this.router.navigate(['/admin/dashboard']); 
+    // or use window.history.back(); to go back in browser history
+  }
+  
   removeUser(id: number) {
     if (confirm('Are you sure you want to remove this user?')) {
       this.api.deleteUser(id).subscribe(() => {

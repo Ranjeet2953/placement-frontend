@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './admin-drive-details.html',
   styleUrls: ['./admin-drive-details.css'],
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule, MatIconModule]
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule, MatIconModule],
 })
 export class AdminDriveDetails implements OnInit {
   driveId!: number;
@@ -23,30 +23,35 @@ export class AdminDriveDetails implements OnInit {
 
   ngOnInit(): void {
     this.driveId = Number(this.route.snapshot.paramMap.get('id'));
+    if (isNaN(this.driveId)) {
+      this.errorMsg = 'Invalid drive ID';
+      return;
+    }
     this.loadDriveDetails();
     this.loadApplications();
   }
 
-  loadDriveDetails() {
-    this.api.getDrives().subscribe(drives => {
-      this.drive = drives.find((d: any) => d.id === this.driveId);
-      if (!this.drive) {
-        this.errorMsg = 'Drive not found';
-      }
-    }, () => this.errorMsg = 'Failed to load drive details');
+  loadDriveDetails(): void {
+    this.api.getDrives().subscribe(
+      (drives) => {
+        this.drive = drives.find((d) => d.id === this.driveId);
+        if (!this.drive) this.errorMsg = 'Drive not found';
+      },
+      () => (this.errorMsg = 'Failed to load drive details')
+    );
   }
 
-  loadApplications() {
-    this.api.getApplicationsForDrive(this.driveId).subscribe({
-      next: apps => {
+  loadApplications(): void {
+    this.api.getApplicationsForDrive(this.driveId).subscribe(
+      (apps) => {
         this.applications = apps;
         this.errorMsg = '';
       },
-      error: () => this.errorMsg = 'Failed to load applications'
-    });
+      () => (this.errorMsg = 'Failed to load applications')
+    );
   }
 
-  goBack() {
+  goBack(): void {
     this.router.navigate(['/admin/drives']);
   }
 }

@@ -112,21 +112,27 @@
           <div class="growth-indicator"><mat-icon>trending_up</mat-icon> <span>+12% this month</span></div>
         </div>
         <div class="company-bar-charts scrollable-list" tabindex="0" style="position:relative;">
-          <div *ngFor="let c of companyStats" class="company-bar-row">
-            <div class="company-bar-meta">
-              <div class="company-icon"></div>
-              <span>{{ c.companyName }}</span>
-            </div>
-            <div class="company-bar">
-              <span [ngStyle]="{'width': c.appliedPercent + '%'}" class="bar-applied"></span>
-              <span [ngStyle]="{'width': c.notAppliedPercent + '%'}" class="bar-notapplied"></span>
-              <span class="bar-label">{{ (c.appliedCount + c.notAppliedCount) }} total</span>
-            </div>
-            <div class="company-bar-legend">
-              <span class="legend-applied">Applied ({{ c.appliedCount }})</span>
-              <span class="legend-notapplied">Not Applied ({{ c.notAppliedCount }})</span>
-            </div>
-          </div>
+         <div *ngFor="let c of companyStats" class="company-bar-row">
+  <div class="company-bar-meta">
+    <div class="company-icon"></div>
+    <span>{{ c.companyName }}</span>
+  </div>
+  <div class="company-bar">
+    <span [ngStyle]="{'width': c.appliedPercent + '%'}" class="bar-applied"></span>
+    <span [ngStyle]="{'width': c.notAppliedPercent + '%'}" class="bar-notapplied"></span>
+    <span class="bar-label"></span>
+  </div>
+  <div class="company-bar-legend">
+    <span 
+      class="legend-applied" 
+      style="cursor:pointer; color: blue; text-decoration: underline;"
+      (click)="showApplicationsForCompany(c.companyName)">
+      Applied ({{ c.appliedCount }})
+    </span>
+    <span class="legend-notapplied">Not Applied ({{ c.notAppliedCount }})</span>
+  </div>
+</div>
+
           <div class="company-bar-summary sticky-summary">
             <div><b>{{ totalApplied }}</b> Total Applied</div>
             <div><b>{{ totalNotApplied }}</b> Not Applied</div>

@@ -1,39 +1,95 @@
 :host {
-    display: block;
-    padding: 1rem 2rem;
-    background-color: #fafafa;
-    min-height: 100vh;
-  }
-  
-  h2 {
-    font-weight: 700;
-    color: #1a237e;
-    margin-bottom: 1rem;
-  }
-  
-  mat-table {
-    width: 100%;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-  }
-  
-  mat-header-row {
-    background-color: #3f51b5;
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  
-  mat-row {
-    font-size: 0.95rem;
-    color: #424242;
-  }
-  
-  mat-row:hover {
-    background-color: #e8eaf6;
-  }
-  
-  mat-cell, mat-header-cell {
-    padding: 15px 20px;
-  }
+  display: block;
+  padding: 1.5rem 2rem;
+  background-color: #fafafa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.back-button-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-btn {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 6px rgba(33, 150, 243, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.back-btn:hover {
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.5);
+}
+
+h2 {
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  letter-spacing: 0.03em;
+}
+
+.stylish-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(33, 150, 243, 0.1);
+  overflow: hidden;
+}
+
+mat-header-row {
+  background-color: #303f9f;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+mat-header-cell, mat-cell {
+  padding: 18px 24px;
+}
+
+.table-row:hover {
+  background-color: #e8eaf6;
+  cursor: pointer;
+}
+
+.company-link {
+  color: #1a237e;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.company-link:hover {
+  color: #303f9f;
+  text-decoration: underline;
+}
+
+.status-applied {
+  color: #2e7d32;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.status-applied:hover {
+  color: #1b5e20;
+}
+
+.status-other {
+  color: #616161;
+  font-weight: 600;
+}
+
+.empty-state {
+  margin-top: 2rem;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #a0a0a0;
+  text-align: center;
+}
