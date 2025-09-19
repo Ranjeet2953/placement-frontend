@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Student } from './student-profile/student-profile';
 
 @Injectable({ providedIn: 'root' })
 export class Api {
@@ -101,6 +103,22 @@ markDriveCompleted(driveId: number) {
   updateDrive(id: number, driveData: any) {
     return this.http.put<any>(`${this.baseUrl}/drives/${id}`, driveData, { withCredentials: true });
   }
+  getDashboardStats() {
+    return this.http.get<any>(this.baseUrl + '/dashboard/stats', { withCredentials: true });
+  }
   
+  getStudent(username: string): Observable<Student> {
+    return this.http.get<Student>(`${this.baseUrl}/students/${username}`, { withCredentials: true });
+  }
   
-}
+  getDashboardStats1() {
+    return this.http.get<any>(this.baseUrl + '/dashboard/stats', { withCredentials: true });
+  }
+  
+  getUpcomingUnappliedDrives() {
+    return this.http.get<any[]>('http://localhost:8080/api/dashboard/student/upcoming-unapplied', { withCredentials: true });
+  }
+  
+  }
+  
+

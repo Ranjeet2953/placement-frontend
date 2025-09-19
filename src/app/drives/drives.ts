@@ -25,7 +25,14 @@ export class Drives implements OnInit {
   applyToDrive(driveId: number) {
     this.api.applyToDrive(driveId).subscribe({
       next: () => alert('Applied!'),
-      error: () => alert('Application failed!')
+      error: (error) => {
+        // Check if backend sent a 400 status with your duplicate apply message
+        if (error.status === 400 && error.error === 'You are already applied to this drive') {
+          alert('You have already applied to this drive');
+        } else {
+          alert('Application failed!');
+        }
+      }
     });
   }
 }

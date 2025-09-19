@@ -16,6 +16,7 @@ import { AdminUsers } from './admin-users/admin-users';
 import { AdminApplications } from './admin-applications/admin-applications';
 import { AdminDriveDetails } from './admin-drive-details/admin-drive-details';
 import { AdminEditDrive } from './admin-edit-drive/admin-edit-drive';
+import { StudentLayoutComponent } from './student-layout-component/student-layout-component';
 
 
 export const routes: Routes = [
@@ -42,8 +43,17 @@ export const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'register', component: AuthComponent },
 
-  { path: 'dashboard', component: StudentDashboard, canActivate: [AuthGuard] },
-  { path: 'profile', component: StudentProfile, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: StudentLayoutComponent,
+    children: [
+      { path: 'dashboard', component: StudentDashboard },
+      { path: 'student-profile', component: StudentProfile },
+      { path: 'student-drives', component: Drives },
+      // add other student routes as children here
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]
+  },
   { path: 'drives', component: Drives, canActivate: [AuthGuard] },
   { path: 'admin-application', component: AdminApplications, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Api } from '../api';
 
@@ -9,13 +9,29 @@ import { Api } from '../api';
   standalone: true,
   imports: [RouterModule]
 })
-export class NavbarStudentComponent {
+export class NavbarStudentComponent implements OnInit {
   @Input() username: string = '';
+  studentImageUrl: string | null = null;
+
   constructor(private api: Api, private router: Router) {}
-  logout() {
+
+  ngOnInit(): void {
+    // 🔥 Fetch student details from DB
+    this.api.getStudent(this.username).subscribe({
+  next: (student) => {
+    this.studentImageUrl = student?.imageUrl || null;
+  },
+  error: () => {
+    this.studentImageUrl = null;
+  }
+});
+
+  }
+
+  logout(): void {
     this.api.logout().subscribe({
-      next: () => this.router.navigate(['/']),
-      error: () => this.router.navigate(['/'])
+      next: () => this.router.navigate(['/login']),
+      error: () => this.router.navigate(['/login']),
     });
   }
 }

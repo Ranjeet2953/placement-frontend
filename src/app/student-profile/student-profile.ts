@@ -77,3 +77,11 @@ export class StudentProfile implements OnInit {
     }
   }
 }
+
+export interface Student {
+  id: number;
+  username: string;
+  name: string;
+  email: string;
+  imageUrl?: string; // optional field
+}
