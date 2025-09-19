@@ -18,6 +18,10 @@ export class Api {
   logout() {
     return this.http.post(this.baseUrl + '/auth/logout', {}, { withCredentials: true });
   }
+  // api.ts (or whatever your Angular service is called)
+markDriveCompleted(driveId: number) {
+  return this.http.put(`/api/drives/${driveId}/complete`, {}); // empty body
+}
 
   getMe() {
     return this.http.get(this.baseUrl + '/auth/me', { withCredentials: true });

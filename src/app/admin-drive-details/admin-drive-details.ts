@@ -44,12 +44,23 @@ export class AdminDriveDetails implements OnInit {
   loadApplications(): void {
     this.api.getApplicationsForDrive(this.driveId).subscribe(
       (apps) => {
-        this.applications = apps;
+        const uniqueApps: any[] = [];
+        const seenStudents = new Set<number>();
+  
+        for (const app of apps || []) {
+          if (!seenStudents.has(app.studentId)) {
+            uniqueApps.push(app);
+            seenStudents.add(app.studentId);
+          }
+        }
+  
+        this.applications = uniqueApps;
         this.errorMsg = '';
       },
       () => (this.errorMsg = 'Failed to load applications')
     );
   }
+  
 
   goBack(): void {
     this.router.navigate(['/admin/drives']);

@@ -47,30 +47,37 @@
     <div class="welcome-banner">
       Welcome back! Here's what's happening with your placements.
     </div>
-
     <div class="cards-row">
-      <div class="stat-card glass fade-in">
-        <div class="stat-icon stat-drives"><mat-icon>assignment</mat-icon></div>
-        <div class="stat-value">{{ totalDrives }}</div>
-        <div class="stat-label">Total Drives</div>
-        <div class="stat-status active-dot">Active</div>
-        <div class="stat-update">Updated 2m ago</div>
+      <div class="stat-card user-card">
+        <div class="stat-icon"><mat-icon>group</mat-icon></div>
+        <div>
+          <div class="stat-value">{{ totalUsers }}</div>
+          <div class="stat-label">Total Users</div>
+        </div>
       </div>
-      <div class="stat-card glass fade-in">
-        <div class="stat-icon stat-applications"><mat-icon>description</mat-icon></div>
-        <div class="stat-value">{{ totalApplications }}</div>
-        <div class="stat-label">Total Applications</div>
-        <div class="stat-status active-dot">Active</div>
-        <div class="stat-update">Updated 2m ago</div>
+      <div class="stat-card drives-card">
+        <div class="stat-icon"><mat-icon>event</mat-icon></div>
+        <div>
+          <div class="stat-value">{{ totalDrives }}</div>
+          <div class="stat-label">Total Drives</div>
+        </div>
       </div>
-      <div class="stat-card glass fade-in">
-        <div class="stat-icon stat-users"><mat-icon>supervisor_account</mat-icon></div>
-        <div class="stat-value">{{ totalUsers }}</div>
-        <div class="stat-label">Total Users</div>
-        <div class="stat-status active-dot">Active</div>
-        <div class="stat-update">Updated 2m ago</div>
+      <div class="stat-card apps-card">
+        <div class="stat-icon"><mat-icon>description</mat-icon></div>
+        <div>
+          <div class="stat-value">{{ totalApplications }}</div>
+          <div class="stat-label">Total Applications</div>
+        </div>
+      </div>
+      <div class="stat-card placement-card">
+        <div class="stat-icon"><mat-icon>trending_up</mat-icon></div>
+        <div>
+          <div class="stat-value">{{ placementRate }}%</div>
+          <div class="stat-label">Placement Rate</div>
+        </div>
       </div>
     </div>
+    
 
     <div class="main-row">
       <div class="main-col main-left glass">
@@ -81,64 +88,54 @@
           </div>
           <button class="view-all-link" (click)="goToDrives()">View All</button>
         </div>
-        <div class="drives-list scrollable-list" tabindex="0">
-          <div *ngFor="let drive of upcomingDrives" class="drive-item">
-            <div class="drive-avatar drive-purple">{{ drive.initials }}</div>
-            <div class="drive-info-row">
-              <div class="drive-title">
-                <b>{{ drive.companyName }}</b> <span class="company-name">({{ drive.companyShort }})</span>
+        <div class="drives-list scrollable-list light-cards-list" tabindex="0">
+          <div *ngFor="let drive of upcomingDrives" class="upcoming-drive-card">
+            <div class="drive-header-row">
+              <div class="drive-icon-box">
+                <mat-icon>business_center</mat-icon>
               </div>
-              <div class="drive-details-row">
-                <mat-icon class="row-icon">calendar_today</mat-icon>
-                <span>{{ drive.dateOfDrive | date:'MMM dd, yyyy' }}</span>
-                <mat-icon class="row-icon">location_on</mat-icon>
-                <span>{{ drive.location }}</span>
+              <span class="drive-title-strong">{{ drive.companyName }}</span>
+              <span *ngIf="drive.completed" class="drive-status-pill">Completed</span>
+              
+            </div>
+            <div class="drive-sub-row">
+              <mat-icon class="row-icon">calendar_today</mat-icon>
+              <span>{{ drive.dateOfDrive | date:'dd/MM/yyyy' }}</span>
+              <mat-icon class="row-icon">location_on</mat-icon>
+              <span>{{ drive.location }}</span>
+            </div>
+            <div class="drive-description">{{ drive.jd | slice:0:48 }}...</div>
+          </div>
+        </div>
+        
+          </div>
+        
+          <div class="main-col main-right glass company-dist-card">
+            <div class="main-card-header dist-header">
+              <div class="main-card-title">
+                <mat-icon>insert_chart</mat-icon>
+                Company Distribution
               </div>
-              <div class="drive-description">{{ drive.jd | slice:0:24 }}</div>
-              <div [ngClass]="{'badge-urgent': drive.isUrgent, 'badge-normal': !drive.isUrgent}" class="drive-badge">
-                <mat-icon>timelapse</mat-icon> {{ drive.countdown }}d
+              <div class="growth-indicator"><mat-icon>trending_up</mat-icon> <span>+12% this month</span></div>
+            </div>
+            <div class="company-bar-charts" tabindex="0">
+              <div *ngFor="let c of companyStats" class="company-dist-bar-card">
+                <div class="dist-bar-header">
+                  <div class="dist-company-icon"><mat-icon>apartment</mat-icon></div>
+                  <div class="dist-company-title">{{ c.companyName }}</div>
+                </div>
+                <div class="company-bar">
+                  <span class="bar-applied" [ngStyle]="{'width': c.appliedPercent + '%'}"></span>
+                  <span class="bar-notapplied" [ngStyle]="{'width': c.notAppliedPercent + '%'}"></span>
+                </div>
+                <div class="dist-legend-row">
+                  <span class="legend-applied">Applied <b>({{ c.appliedCount }})</b></span>
+                  <span class="legend-notapplied">Not Applied <b>({{ c.notAppliedCount }})</b></span>
+                </div>
               </div>
+             
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="main-col main-right glass">
-        <div class="main-card-header">
-          <div class="main-card-title">
-            <mat-icon>insert_chart</mat-icon>
-            Company Distribution
-          </div>
-          <div class="growth-indicator"><mat-icon>trending_up</mat-icon> <span>+12% this month</span></div>
-        </div>
-        <div class="company-bar-charts scrollable-list" tabindex="0" style="position:relative;">
-         <div *ngFor="let c of companyStats" class="company-bar-row">
-  <div class="company-bar-meta">
-    <div class="company-icon"></div>
-    <span>{{ c.companyName }}</span>
-  </div>
-  <div class="company-bar">
-    <span [ngStyle]="{'width': c.appliedPercent + '%'}" class="bar-applied"></span>
-    <span [ngStyle]="{'width': c.notAppliedPercent + '%'}" class="bar-notapplied"></span>
-    <span class="bar-label"></span>
-  </div>
-  <div class="company-bar-legend">
-    <span 
-      class="legend-applied" 
-      style="cursor:pointer; color: blue; text-decoration: underline;"
-      (click)="showApplicationsForCompany(c.companyName)">
-      Applied ({{ c.appliedCount }})
-    </span>
-    <span class="legend-notapplied">Not Applied ({{ c.notAppliedCount }})</span>
-  </div>
-</div>
-
-          <div class="company-bar-summary sticky-summary">
-            <div><b>{{ totalApplied }}</b> Total Applied</div>
-            <div><b>{{ totalNotApplied }}</b> Not Applied</div>
-          </div>
-        </div>
-      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

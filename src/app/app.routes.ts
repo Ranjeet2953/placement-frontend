@@ -17,6 +17,7 @@ import { AdminApplications } from './admin-applications/admin-applications';
 import { AdminDriveDetails } from './admin-drive-details/admin-drive-details';
 import { AdminEditDrive } from './admin-edit-drive/admin-edit-drive';
 
+
 export const routes: Routes = [
   {
     path: 'admin',
@@ -29,6 +30,8 @@ export const routes: Routes = [
       { path: 'applications', component: AdminApplications },
       { path: 'admin-profile', component: AdminProfile },
       { path: 'users', component: AdminUsers },
+      
+
       { path: 'drives/:id', component: AdminDriveDetails },
       { path: 'drives/edit/:id', component: AdminEditDrive },
  // Drive details route
@@ -38,6 +41,7 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: AuthComponent },
   { path: 'register', component: AuthComponent },
+
   { path: 'dashboard', component: StudentDashboard, canActivate: [AuthGuard] },
   { path: 'profile', component: StudentProfile, canActivate: [AuthGuard] },
   { path: 'drives', component: Drives, canActivate: [AuthGuard] },
