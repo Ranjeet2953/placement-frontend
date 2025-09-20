@@ -118,6 +118,16 @@ markDriveCompleted(driveId: number) {
   getUpcomingUnappliedDrives() {
     return this.http.get<any[]>('http://localhost:8080/api/dashboard/student/upcoming-unapplied', { withCredentials: true });
   }
+  submitFeedback(feedbackData: any) {
+    return this.http.post(this.baseUrl + '/feedback', feedbackData, { withCredentials: true });
+  }
+  
+  getAllFeedbacks() {
+    return this.http.get<any[]>(this.baseUrl + '/admin/feedback-reports', { withCredentials: true });
+  }
+  getAppliedDriveIds() {
+    return this.http.get<number[]>(this.baseUrl + '/dashboard/applied-drives/ids', { withCredentials: true });
+  }
   
   }
   

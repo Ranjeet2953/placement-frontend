@@ -14,7 +14,7 @@
   
   
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  background: linear-gradient(90deg, #52eae5, #27d6a7);
   color: white;
   border-radius: 0 0 12px 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
@@ -25,7 +25,7 @@
   text-align: center;
   font-size: 1.9rem;
   font-weight: 700;
-  color: #fff;
+  color: #080808;
 }
 
 .header button {
@@ -83,7 +83,7 @@
   color: #1f2937;
   margin-bottom: 1.5rem;
   text-align: center;
-  background: linear-gradient(to right, #4f46e5, #3b82f6);
+  background: linear-gradient(to right, #070a09, #0b2246);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -125,8 +125,8 @@
   box-shadow: 0 8px 30px rgba(0,0,0,0.08);
 }
 mat-header-row {
-  background: linear-gradient(90deg, #4f46e5, #3b82f6);
-  color: #fff;
+  background: linear-gradient(90deg, #6fc5ea, #3b9de8);
+  color: #0f0d0d;
   font-weight: 600;
   font-size: 1rem;
 }

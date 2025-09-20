@@ -1,6 +1,9 @@
 <nav class="sidebar-nav">
   <div class="sidebar-header">
-    <div class="logo-circle">TP</div>
+    <div class="logo-circle">
+      <img src="student.gif" alt="Logo" class="logo-gif">
+    </div>
+    
     <div class="app-titles">
       <div class="portal-title">T&amp;P Portal</div>
       <div class="subtitle">Student Dashboard</div>
@@ -15,7 +18,7 @@
       <a routerLink="/student-drives"><i class="fas fa-briefcase"></i><span>Placements</span></a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a routerLink="/interviews"><i class="fas fa-calendar"></i><span>Interviews</span></a>
+      <a routerLink="/student-drives-history"><i class="fas fa-calendar"></i><span>Drive History</span></a>
     </li>
     <li class="nav-item" routerLinkActive="active">
       <a routerLink="/applications"><i class="fas fa-paper-plane"></i><span>Applications</span></a>
@@ -24,6 +27,10 @@
       <a routerLink="/student-profile"><i class="fas fa-user"></i><span>Profile</span></a>
     </li>
     <li class="nav-item" routerLinkActive="active">
+      <a routerLink="/feedback"><i class="fas fa-comment-dots"></i><span>Feedback</span></a>
+    </li>
+    
+    <li class="nav-item" routerLinkActive="active">
       <a routerLink="/settings"><i class="fas fa-cog"></i><span>Settings</span></a>
     </li>
   </ul>
@@ -31,7 +38,7 @@
   <!-- Footer with profile + logout -->
   <div class="sidebar-footer">
     <div class="student-circle">
-    <img [src]="studentImageUrl || 'default-profile.png'" alt="Student Profile">
+    <img [src]="studentImageUrl || 'change.gif'" alt="Student Profile">
     </div>
     <div class="logout-btn">
       <a (click)="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>

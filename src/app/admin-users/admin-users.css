@@ -25,8 +25,8 @@ mat-table {
 
 /* Header row style */
 mat-header-row {
-  background-color: #1976d2;
-  color: white;
+  background-color: #5ff1cf;
+  color: rgb(17, 12, 12);
   font-weight: 600;
   font-size: 1rem;
 }

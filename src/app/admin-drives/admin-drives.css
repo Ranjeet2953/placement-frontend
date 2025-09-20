@@ -12,7 +12,7 @@ body {
   display: flex;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  background: linear-gradient(90deg, #56ecd3, #42f5dd);
   color: white;
   border-radius: 0 0 12px 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
@@ -23,7 +23,7 @@ body {
   text-align: center;
   font-size: 1.9rem;
   font-weight: 700;
-  color: #fff;
+  color: #0c0909;
 }
 
 .header button {

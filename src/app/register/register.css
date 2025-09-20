@@ -19,80 +19,78 @@
   color: #333;
 }
 
+/* Floating Label */
 .input-group {
   position: relative;
   width: 100%;
 }
 
-/* Center the third dropdown container */
-.input-group.select-group {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-/* Common styles for inputs and selects */
 .input-group input,
 .input-group select {
-  padding: 12px 42px 12px 14px;
+  width: 100%;
+  padding: 14px 2px 14px 14px;
   border-radius: 10px;
   border: 1px solid #ddd;
   background: #f9f9f9;
-  color: #222;
   font-size: 1rem;
   font-weight: 500;
   outline: none;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: border 0.2s, box-shadow 0.2s, background 0.2s;
-  appearance: none;
 }
 
-/* Inputs are 90% width */
-.input-group input {
-  width: 90%;
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #777;
+  pointer-events: none;
+  transition: 0.2s ease all;
 }
 
-/* Select in the centered container has controlled width */
-.input-group.select-group select {
-  width: 280px; /* fixed width for better centering */
-  text-align: left;
-  font-weight: 500;
-}
-
-/* General select overrides - full styling without fixed width */
-.input-group select {
-  width: auto;
-  padding-right: 40px;
-  cursor: pointer;
-  color: #444;
-  background-image:
-    linear-gradient(45deg, transparent 50%, #7a27e8 50%),
-    linear-gradient(135deg, #7a27e8 50%, transparent 50%),
-    linear-gradient(to right, #ddd, #ddd);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    calc(100% - 25px) 0.5em;
-  background-size: 5px 5px, 5px 5px, 1px 1.5em;
-  background-repeat: no-repeat;
-}
-
-/* Focus states */
-.input-group input:focus,
-.input-group select:focus {
-  border: 1px solid #7a27e8;
-  box-shadow: 0 0 6px rgba(122, 39, 232, 0.25);
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:valid + label {
+  top: -8px;
+  left: 10px;
+  font-size: 0.75rem;
+  color: #7a27e8;
   background: #fff;
+  padding: 0 4px;
+  border-radius: 4px;
 }
 
+/* Icons */
 .input-group .icon {
   position: absolute;
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
+  transition: transform 0.2s ease, fill 0.2s;
 }
 
+.input-group input:focus ~ .icon svg,
+.input-group select:focus ~ .icon svg {
+  fill: #7a27e8;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Error State */
+.input-group.error input {
+  border: 1px solid #e63946;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* Button */
 .main-btn {
   width: 100%;
   background: linear-gradient(90deg, #7a27e8 0%, #bd69cc 100%);
@@ -106,13 +104,47 @@
   box-shadow: 0 4px 14px rgba(186, 61, 146, 0.4);
   cursor: pointer;
   transition: background 0.25s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
-.main-btn:hover {
+.main-btn:hover:enabled {
   background: linear-gradient(90deg, #bd69cc 0%, #7a27e8 100%);
   transform: translateY(-2px);
 }
 
+.main-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Checkmark Success */
+.checkmark {
+  font-size: 1.3rem;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Feedback */
 .error-msg {
   color: #e63946;
   font-size: 0.9rem;

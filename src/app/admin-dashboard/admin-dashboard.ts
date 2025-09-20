@@ -16,6 +16,8 @@ import { AdminProfile } from '../admin-profile/admin-profile';
 import { MatChipsModule } from '@angular/material/chips';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -34,6 +36,8 @@ import { ChartData, ChartOptions } from 'chart.js';
     MatSelectModule,
     MatTooltipModule,
     BaseChartDirective,
+    MatMenuModule,
+    
   ],
   templateUrl: './admin-dashboard.html',
   styleUrls: ['./admin-dashboard.css'],
@@ -117,6 +121,7 @@ export class AdminDashboard implements OnInit {
         });
     });
 
+    
     // Deduplicate applications and exclude completed drives
     this.api.getApplications().subscribe(apps => {
       const dedupedApps = apps.filter(
@@ -179,7 +184,7 @@ export class AdminDashboard implements OnInit {
           appliedCount,
           notAppliedCount,
           appliedPercent: (appliedCount / total) * 100,
-          notAppliedPercent: (notAppliedCount / total) * 100
+          notAppliedPercent: ((this.totalUsers-appliedCount) / total) * 100
         };
       });
 

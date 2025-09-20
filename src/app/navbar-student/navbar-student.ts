@@ -1,13 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Api } from '../api';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-student-navbar',
   templateUrl: './navbar-student.html',
   styleUrls: ['./navbar-student.css'],
   standalone: true,
-  imports: [RouterModule]
+  imports: [RouterModule,FormsModule]
 })
 export class NavbarStudentComponent implements OnInit {
   @Input() username: string = '';

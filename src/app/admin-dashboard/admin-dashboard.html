@@ -4,43 +4,69 @@
     [opened]="sidebarOpen"
     class="sidenav"
     [class.sidenav-closed]="!sidebarOpen">
+
+    <!-- Sidebar Header -->
     <div class="sidenav-header">
-      <mat-icon class="admin-icon">account_circle</mat-icon>
+      <img matListIcon src="asdmin.gif" alt="Dashboard" class="animated-icon">
       <span *ngIf="sidebarOpen" class="logo">Placement Admin</span>
     </div>
+
+    <!-- Navigation Sections -->
     <mat-nav-list>
-      <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
-        <mat-icon matListIcon>dashboard</mat-icon>
+      <br>
+
+      <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active" matTooltip="Dashboard">
+        <img matListIcon src="dashboard.gif" alt="Dashboard" class="animated-icon">
         <span *ngIf="sidebarOpen">Dashboard</span>
       </a>
-      <a mat-list-item routerLink="/admin/applications" routerLinkActive="active">
-        <mat-icon matListIcon>assignment</mat-icon>
+   <br>
+      <a mat-list-item routerLink="/admin/applications" routerLinkActive="active" matTooltip="Applications" class="with-badge">
+        <img matListIcon src="application.gif" alt="Dashboard" class="animated-icon">
         <span *ngIf="sidebarOpen">Applications</span>
+        
       </a>
-      <a mat-list-item routerLink="/admin/drives" routerLinkActive="active">
-        <mat-icon matListIcon>business_center</mat-icon>
+
+      <br>
+
+      <a mat-list-item routerLink="/admin/drives" routerLinkActive="active" matTooltip="Drives">
+        <img matListIcon src="drives.gif" alt="Dashboard" class="animated-icon">
         <span *ngIf="sidebarOpen">Drives</span>
       </a>
-      <a mat-list-item routerLink="/admin/users" routerLinkActive="active">
-        <mat-icon matListIcon>group</mat-icon>
+     <br>
+      <a mat-list-item routerLink="/admin/users" routerLinkActive="active" matTooltip="Users" class="with-badge">
+        <img matListIcon src="user.gif" alt="Dashboard" class="animated-icon">
         <span *ngIf="sidebarOpen">Users</span>
+        
       </a>
-      <a mat-list-item (click)="logout()" style="cursor:pointer">
-        <mat-icon matListIcon>logout</mat-icon>
+
+     <br>
+     <a mat-list-item routerLink="/admin/feedback-reports" routerLinkActive="active" matTooltip="Users" class="with-badge">
+      <img matListIcon src="user.gif" alt="Dashboard" class="animated-icon">
+      <span *ngIf="sidebarOpen">Feedback Reports </span>
+      
+    </a>
+    <br>
+
+
+      <a mat-list-item (click)="logout()" style="cursor:pointer" matTooltip="Logout">
+        <img matListIcon src="logout.gif" alt="Dashboard" class="animated-icon">
         <span *ngIf="sidebarOpen">Logout</span>
       </a>
     </mat-nav-list>
+   <br><br><br><br><br><br><br><br><br><br><br>
+    <!-- Profile Card (bottom) -->
+   
+
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar class="topbar">
-      <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()">
-        <mat-icon aria-label="Toggle sidebar">{{ sidebarOpen ? 'menu_open' : 'menu' }}</mat-icon>
-      </button>
+      
       <span class="toolbar-title">Admin Dashboard</span>
       <span class="spacer"></span>
       <div class="admin-profile-badge">
-        <mat-icon style="font-size:22px;">person</mat-icon>
-        <span>admin</span>
+       
+       
       </div>
     </mat-toolbar>
 
@@ -49,28 +75,38 @@
     </div>
     <div class="cards-row">
       <div class="stat-card user-card">
-        <div class="stat-icon"><mat-icon>group</mat-icon></div>
+        <div class="stat-icon">
+          <img src="users1.gif" alt="Group Icon" class="stat-icon-img">
+        </div>
+        
         <div>
           <div class="stat-value">{{ totalUsers }}</div>
           <div class="stat-label">Total Users</div>
         </div>
       </div>
       <div class="stat-card drives-card">
-        <div class="stat-icon"><mat-icon>event</mat-icon></div>
+        <div class="stat-icon">
+          <img src="calendar.gif" alt="Group Icon" class="stat-icon-img">
+        </div>
+        
         <div>
           <div class="stat-value">{{ totalDrives }}</div>
           <div class="stat-label">Total Drives</div>
         </div>
       </div>
       <div class="stat-card apps-card">
-        <div class="stat-icon"><mat-icon>description</mat-icon></div>
+        <div class="stat-icon">
+          <img src="apply.gif" alt="Group Icon" class="stat-icon-img">
+        </div>
         <div>
           <div class="stat-value">{{ totalApplications }}</div>
           <div class="stat-label">Total Applications</div>
         </div>
       </div>
       <div class="stat-card placement-card">
-        <div class="stat-icon"><mat-icon>trending_up</mat-icon></div>
+        <div class="stat-icon">
+          <img src="place.gif" alt="Group Icon" class="stat-icon-img">
+        </div>
         <div>
           <div class="stat-value">{{ placementRate }}%</div>
           <div class="stat-label">Placement Rate</div>
@@ -83,7 +119,7 @@
       <div class="main-col main-left glass">
         <div class="main-card-header">
           <div class="main-card-title">
-            <mat-icon>calendar_today</mat-icon>
+            <img src="upcoming.gif" alt="Calendar" class="icon-gif">
             Upcoming Drives
           </div>
           <button class="view-all-link" (click)="goToDrives()">View All</button>
@@ -113,7 +149,7 @@
           <div class="main-col main-right glass company-dist-card">
             <div class="main-card-header dist-header">
               <div class="main-card-title">
-                <mat-icon>insert_chart</mat-icon>
+                <img src="com.gif" alt="Calendar" class="icon-gif">
                 Company Distribution
               </div>
               <div class="growth-indicator"><mat-icon>trending_up</mat-icon> <span>+12% this month</span></div>
@@ -130,7 +166,7 @@
                 </div>
                 <div class="dist-legend-row">
                   <span class="legend-applied">Applied <b>({{ c.appliedCount }})</b></span>
-                  <span class="legend-notapplied">Not Applied <b>({{ c.notAppliedCount }})</b></span>
+                  <span class="legend-notapplied">Not Applied <b>({{ totalUsers-c.appliedCount }})</b></span>
                 </div>
               </div>
              

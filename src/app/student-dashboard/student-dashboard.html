@@ -2,24 +2,25 @@
   <h2>Welcome back, {{ profile.fullName }}!</h2>
   <p>Here's what's happening with your training and placement journey.</p>
 
-  <div class="stats-grid">
+<div class="stats-grid">
   <mat-card>
-    <mat-card-title>Available Drives</mat-card-title>
-    <mat-card-content>{{ stats.availableDrives }}</mat-card-content>
+    <mat-card-title>Total Drives</mat-card-title>
+    <mat-card-content>{{ stats.totalDrives }}</mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title>Applications Sent</mat-card-title>
+    <mat-card-title>Total Applied</mat-card-title>
     <mat-card-content>{{ stats.applicationsCount }}</mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title>Interviews Scheduled</mat-card-title>
-    <mat-card-content>{{ stats.interviewCount }}</mat-card-content>
+    <mat-card-title>Skills</mat-card-title>
+<mat-card-content>{{ profile.skills ? (profile.skills | keyvalue).length : 0 }}</mat-card-content>
   </mat-card>
   <mat-card>
-    <mat-card-title>Accepted Applications</mat-card-title>
-    <mat-card-content>{{ stats.acceptedCount }}</mat-card-content>
+    <mat-card-title>Profile Completion</mat-card-title>
+    <mat-card-content>{{ stats.profileCompletion }}%</mat-card-content>
   </mat-card>
 </div>
+
 
 
   <div class="activity-row" style="display: flex; gap: 24px;">
@@ -40,7 +41,6 @@
       </mat-list>
     </mat-card>
   </div>
-
   <mat-card>
     <mat-card-title>{{ profile.fullName }}</mat-card-title>
     <mat-card-subtitle>{{ profile.branch }} ({{ profile.year }}) • CGPA: {{ profile.cgpa }}</mat-card-subtitle>

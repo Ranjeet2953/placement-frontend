@@ -17,8 +17,9 @@ import { AdminApplications } from './admin-applications/admin-applications';
 import { AdminDriveDetails } from './admin-drive-details/admin-drive-details';
 import { AdminEditDrive } from './admin-edit-drive/admin-edit-drive';
 import { StudentLayoutComponent } from './student-layout-component/student-layout-component';
-
-
+import { Feedback } from './feedback/feedback';
+import { FeedbackReports } from './feedback-reports/feedback-reports';
+import { StudentDrivesHistory } from './drive-history/drive-history';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -31,6 +32,7 @@ export const routes: Routes = [
       { path: 'applications', component: AdminApplications },
       { path: 'admin-profile', component: AdminProfile },
       { path: 'users', component: AdminUsers },
+      { path: 'feedback-reports', component: FeedbackReports },
       
 
       { path: 'drives/:id', component: AdminDriveDetails },
@@ -50,6 +52,8 @@ export const routes: Routes = [
       { path: 'dashboard', component: StudentDashboard },
       { path: 'student-profile', component: StudentProfile },
       { path: 'student-drives', component: Drives },
+      { path: 'feedback', component: Feedback },
+      { path: 'student-drives-history', component: StudentDrivesHistory },
       // add other student routes as children here
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]

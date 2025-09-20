@@ -19,22 +19,28 @@ export class Register {
   success = '';
 
   constructor(private api: Api, private router: Router) {}
+  loading = false;
 
   register() {
     this.error = '';
     this.success = '';
+    this.loading = true;
     this.api.register({ username: this.username, password: this.password, role: this.role })
       .subscribe({
         next: () => {
           this.success = 'Registration successful!';
+          this.loading = false;
           setTimeout(() => this.router.navigate(['/login']), 1500);
         },
         error: err => {
+          this.loading = false;
           if (err.error?.message) this.error = err.error.message;
           else this.error = 'Registration failed';
         }
       });
   }
+  
+ 
   
   
 }
